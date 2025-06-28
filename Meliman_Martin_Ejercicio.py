@@ -10,14 +10,14 @@ def menu_reserva():
     print("3.- Ver stock de reservas")
     print("4.- Salir")
 
-    
+
 def reservar_zapatillas():
     print("---- Reservar Zapatillas ----")
     if sum(reservas.values()) >= max_reservas:
         print("Error, stock completo")
         return
     
-    nombre = input("Nombre del comprador: ").strip
+    nombre = input("Nombre del comprador: ").strip()
     
     if nombre in reservas:
         print("Error nombre ya registrado en la reserva.")
@@ -30,3 +30,26 @@ def reservar_zapatillas():
         return
     reservas[nombre] = 1
     print(f"Reserva realizada exitosamente para {nombre}")
+
+def buscar_reserva():
+    print("---- Buscar Zapatillas Reservadas ----")
+
+    nombre = input("Nombre del comprador a buscar: ").strip()
+
+    if nombre in reservas:
+        cantidad = reservas[nombre]
+        tipo = "Vip" if cantidad == 2 else "estandar"
+        print(f"Reserva encontrada: {nombre} - {cantidad} par(es) ({tipo})")
+
+        if cantidad == 1 and len(reservas) < max_reservas:
+            vip = input("¿Desea pagar adicional para VIP y reservar 2 pares? (s/n): ").lower()
+            if vip == "s":
+                reservas[nombre] = 2
+                print(f"Reserva actualizada a VIP. Ahora {nombre} tiene 2 pares reservados.")
+            else:
+                print("Manteniendo reserva actual.")
+        elif cantidad == 2:
+            print("Ya tiene una reserva VIP.")
+    else:
+        print("No se encontró ninguna reserva con ese nombre.")
+        
