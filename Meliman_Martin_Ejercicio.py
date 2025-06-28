@@ -58,3 +58,24 @@ def ver_stock():
     total_pares = sum(reservas.values())
     print(f"Pares reservados: {total_pares}")
     print(f"Pares disponibles: {max_reservas - total_pares}")
+
+def main():
+    while True:
+        menu_reserva()
+        try:
+            opcion = input("Seleccione una opción (1-4): ")
+            if opcion == "1":
+                reservar_zapatillas()
+            elif opcion == "2":
+                buscar_reserva()
+            elif opcion == "3":
+                ver_stock()
+            elif opcion == "4":
+                print("Programa terminado...")
+                break
+            else:
+                print("Debe ingresar una opción válida!!")
+        except ValueError:
+            print("Debe ingresar una opción válida!!")
+
+main()
