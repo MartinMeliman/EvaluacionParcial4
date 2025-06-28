@@ -52,4 +52,9 @@ def buscar_reserva():
             print("Ya tiene una reserva VIP.")
     else:
         print("No se encontró ninguna reserva con ese nombre.")
-        
+
+def ver_stock():
+    print("-- Ver Stock de Reservas --")
+    total_pares = sum(reservas.values())
+    print(f"Pares reservados: {total_pares}")
+    print(f"Pares disponibles: {max_reservas - total_pares}")
